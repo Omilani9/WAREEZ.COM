@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wareez — Frontend Developer Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --ink:#0f172a;
+    --muted:#475569;
+    --line:#e2e8f0;
+    --accent:#0ea5e9;
+  }
+  html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: #f8fafc;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 16mm 15mm;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+  }
+  .name { font-size: 34px; font-weight: 800; letter-spacing: 1.5px; line-height: 1; }
+  .name span { color: var(--accent); }
+  .role { font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .contact { text-align: right; font-size: 11.5px; color: var(--muted); line-height: 1.6; white-space: nowrap; }
+  .contact a { color: var(--ink); text-decoration: none; }
+  h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 4px; margin-bottom: 8px; font-weight: 700; }
+  p, li { font-size: 11.5px; line-height: 1.55; color: var(--ink); }
+  .summary { color: var(--muted); }
+  .skills { display: grid; gap: 4px; }
+  .skill-row { font-size: 11.5px; line-height: 1.5; }
+  .skill-row b { color: var(--ink); }
+  .skill-row span { color: var(--muted); }
+  .job { margin-bottom: 4px; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .job-title { font-weight: 700; font-size: 12px; }
+  .job-meta { font-size: 11px; color: var(--muted); font-style: italic; }
+  ul { margin: 4px 0 0 16px; }
+  ul li { margin-bottom: 2px; }
+  .project { margin-bottom: 7px; }
+  .proj-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .proj-name { font-weight: 700; font-size: 12px; }
+  .proj-link { font-size: 10.5px; color: var(--accent); text-decoration: none; }
+  .proj-stack { font-size: 10.5px; color: var(--muted); font-style: italic; margin-top: 1px; }
+  .project p { font-size: 11px; color: var(--ink); margin-top: 2px; }
+  .edu-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .edu-deg { font-weight: 700; font-size: 12px; }
+  .edu-meta { font-size: 11px; color: var(--muted); }
+  .note { font-size: 10px; color: var(--muted); text-align: center; margin-top: auto; padding-top: 6px; border-top: 1px solid var(--line); }
+  @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="name">WAREEZ<span>.</span></div>
+      <div class="role">Frontend Developer &amp; Website Creator</div>
+    </div>
+    <div class="contact">
+      omilaniwareez9@gmail.com<br>
+      09134186826
+    </div>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p class="summary">
+      Frontend developer with 1 year of hands-on experience building and shipping responsive,
+      user-focused websites. Skilled in HTML, CSS, JavaScript, and React, with a strong eye for
+      clean UI and smooth user experience. BSc.Ed graduate who communicates clearly and approaches
+      every build with structure, patience, and attention to detail.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-row"><b>Languages:</b> <span>HTML5, CSS3, JavaScript (ES6+)</span></div>
+      <div class="skill-row"><b>Library:</b> <span>React</span></div>
+      <div class="skill-row"><b>Styling:</b> <span>Responsive design, Flexbox, CSS Grid, animations</span></div>
+      <div class="skill-row"><b>Tools:</b> <span>Git, GitHub, VS Code, Vercel (deployment)</span></div>
+      <div class="skill-row"><b>Concepts:</b> <span>Cross-browser compatibility, mobile-first design, UI/UX principles, component-based architecture</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Freelance Frontend Developer</span>
+        <span class="job-meta">Self-employed · 2024 – Present</span>
+      </div>
+      <ul>
+        <li>Designed and built <strong>3 responsive websites</strong> from concept to live deployment.</li>
+        <li>Translated design ideas into pixel-accurate, mobile-friendly interfaces.</li>
+        <li>Deployed and maintained live projects on Vercel.</li>
+        <li>Worked directly with clients to gather requirements and deliver on schedule.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="project">
+      <div class="proj-head">
+        <span class="proj-name">GiftDrop</span>
+        <a class="proj-link" href="https://gift-drop-eta.vercel.app">gift-drop-eta.vercel.app</a>
+      </div>
+      <div class="proj-stack">HTML · CSS · JavaScript</div>
+      <p>A gift-focused website with a clean, responsive interface and a smooth user flow.</p>
+    </div>
+    <div class="project">
+      <div class="proj-head">
+        <span class="proj-name">Nestech</span>
+        <a class="proj-link" href="https://nastech-gen.vercel.app">nastech-gen.vercel.app</a>
+      </div>
+      <div class="proj-stack">HTML · CSS · JavaScript</div>
+      <p>A modern tech-brand website featuring a responsive layout and interactive UI elements.</p>
+    </div>
+    <div class="project">
+      <div class="proj-head">
+        <span class="proj-name">Maison Ari</span>
+        <a class="proj-link" href="https://maisonari.vercel.app">maisonari.vercel.app</a>
+      </div>
+      <div class="proj-stack">HTML · CSS · JavaScript</div>
+      <p>An elegant, design-forward site emphasizing visual layout, typography, and responsive polish.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="edu-head">
+      <span class="edu-deg">B.Sc. (Ed.) Social Studies Education</span>
+      <span class="edu-meta">Olabisi Onabanjo University · 2023</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Additional</h2>
+    <ul>
+      <li>Self-taught frontend developer; continuous learner.</li>
+      <li>Strong communication and structured problem-solving.</li>
+    </ul>
+  </section>
+
+  <div class="note">References available on request</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wareez — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Orbitron + JetBrains Mono are still used by the intro animation -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- New site fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== CINEMATIC INTRO ===== -->
+<div id="intro" class="intro">
+  <canvas id="code-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="intro-vignette"></div>
+
+  <div id="loader" class="loader hidden">
+    <div class="loader-title">INITIALIZING PORTFOLIO</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loader-bar"></div>
+    </div>
+    <div class="loader-info">
+      <span id="loader-percent">0%</span>
+      <span id="loader-tip">Loading assets…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN SITE ===== -->
+<main id="site" class="site hidden">
+
+  <!-- Background video -->
+  <video id="bg-video" class="bg-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback">
+    <source src="bg.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-overlay"></div>
+
+  <!-- Live visitor clock -->
+  <div id="live-clock" class="live-clock" aria-live="polite">
+    <span class="clock-dot"></span>
+    <span id="clock-location">Locating…</span>
+    <span class="clock-sep">·</span>
+    <span id="clock-time">--:--:--</span>
+  </div>
+
+  <!-- Top bar -->
+  <nav class="topbar">
+    <a href="#portfolio" class="nav-btn">Portfolio</a>
+    <a href="#terminal" class="nav-btn">Terminal</a>
+    <a href="Wareez___Frontend_Developer_Resume.pdf" download="Wareez_Frontend_Developer_Resume.pdf" class="nav-btn download-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Resume
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="status"><span class="dot"></span>Open to freelance &amp; full-time roles</div>
+      <h1 class="hero-title" title="Click me">WAREEZ</h1>
+      <p class="hero-sub">Frontend Developer &amp; Website Creator</p>
+      <p class="hero-types"><span class="prompt">&gt;</span> <span id="typed">HTML · CSS · JavaScript · React</span><span class="caret"></span></p>
+      <p class="hero-tag">I build fast, responsive, and beautiful web experiences.</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-primary">View my work</a>
+        <a href="#terminal" class="btn btn-ghost">Try my terminal</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll ↓</div>
+  </section>
+
+  <!-- Stats strip -->
+  <section class="stats" id="stats">
+    <div class="stat"><span class="stat-num" data-count="1" data-suffix="+">1+</span><span class="stat-label">Year shipping</span></div>
+    <div class="stat"><span class="stat-num" data-count="3">3</span><span class="stat-label">Live projects</span></div>
+    <div class="stat"><span class="stat-num" data-count="100" data-suffix="%">100%</span><span class="stat-label">Responsive builds</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Eye for detail</span></div>
+  </section>
+
+  <!-- Tech marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee-track">
+      <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>Git</span><span>GitHub</span><span>Vercel</span><span>Flexbox</span><span>CSS Grid</span><span>Responsive</span><span>Animations</span><span>UI / UX</span>
+    </div>
+  </div>
+
+  <!-- Storytelling -->
+  <section class="story" id="about">
+    <div class="story-panel">
+      <span class="story-label">01 — THE BEGINNING</span>
+      <h2>I didn't start with code. I started with people.</h2>
+      <p>
+        I studied Social Studies Education — learning how to stand in front of people and make
+        ideas land. Then I found the browser. I realized a website is just another way to
+        communicate, only more powerful. So I switched lanes and never looked back.
+      </p>
+    </div>
+    <div class="story-panel">
+      <span class="story-label">02 — THE CRAFT</span>
+      <h2>One year. Three shipped products. No shortcuts.</h2>
+      <p>
+        I taught myself HTML, CSS, JavaScript, and React — and spent the last year building
+        real websites from concept to live deployment. GiftDrop, Nestech, Maison Ari. Each one
+        sharpened my eye for clean layout, responsive design, and the small details that make
+        a site feel finished.
+      </p>
+    </div>
+    <div class="story-panel">
+      <span class="story-label">03 — THE MISSION</span>
+      <h2>I build for people, not just screens.</h2>
+      <p>
+        My goal is simple: sites that load fast, look sharp, and work on any device. I care
+        about the craft, I communicate clearly, and I deliver on time. If you need a frontend
+        developer who treats your project like it matters — let's talk.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <h2 class="section-title">SELECTED WORK</h2>
+    <div class="grid">
+      <a href="https://gift-drop-eta.vercel.app" target="_blank" rel="noopener" class="card">
+        <div class="card-visual" style="background:linear-gradient(135deg,#0ea5e9,#7c3aed)"></div>
+        <div class="card-body">
+          <h3>GiftDrop</h3>
+          <p>Gift-focused site with a clean, responsive interface and smooth flow.</p>
+          <span class="card-tag">HTML · CSS · JS</span>
+        </div>
+      </a>
+      <a href="https://nastech-gen.vercel.app" target="_blank" rel="noopener" class="card">
+        <div class="card-visual" style="background:linear-gradient(135deg,#22d3ee,#0ea5e9)"></div>
+        <div class="card-body">
+          <h3>Nestech</h3>
+          <p>Modern tech-brand site with responsive layout and interactive UI.</p>
+          <span class="card-tag">HTML · CSS · JS</span>
+        </div>
+      </a>
+      <a href="https://maisonari.vercel.app" target="_blank" rel="noopener" class="card">
+        <div class="card-visual" style="background:linear-gradient(135deg,#f472b6,#7c3aed)"></div>
+        <div class="card-body">
+          <h3>Maison Ari</h3>
+          <p>Elegant, design-forward site with strong typography and polish.</p>
+          <span class="card-tag">HTML · CSS · JS</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Interactive terminal -->
+  <section class="terminal-section" id="terminal">
+    <h2 class="section-title">ASK MY TERMINAL</h2>
+    <div class="term" id="term">
+      <div class="term-bar">
+        <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+        <span class="term-title">wareez@portfolio: ~</span>
+      </div>
+      <div class="term-body" id="term-body" aria-live="polite"></div>
+      <form class="term-row" id="term-form" autocomplete="off">
+        <span class="term-prompt"><span class="host">wareez@portfolio:~</span>$</span>
+        <input id="term-input" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Type a command" placeholder="type a command…">
+      </form>
+      <div class="term-chips" id="term-chips">
+        <button type="button" class="chip" data-cmd="help">help</button>
+        <button type="button" class="chip" data-cmd="about">about</button>
+        <button type="button" class="chip" data-cmd="skills">skills</button>
+        <button type="button" class="chip" data-cmd="projects">projects</button>
+        <button type="button" class="chip" data-cmd="resume">resume</button>
+        <button type="button" class="chip" data-cmd="theme">theme</button>
+        <button type="button" class="chip" data-cmd="hire">hire</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact" id="contact">
+    <h2>LET'S BUILD SOMETHING.</h2>
+    <p>Available for freelance and full-time frontend roles.</p>
+    <a href="mailto:omilaniwareez9@gmail.com" class="cta-btn">omilaniwareez9@gmail.com</a>
+  </section>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Wareez — Frontend Developer</span>
+    <span>Built with HTML, CSS, JS &amp; Three.js</span>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="main.js"></script>
+<script src="extras.js"></script>
+</body>
+</html>
