@@ -120,6 +120,22 @@ for (let i=0; i<targets.length; i++){
   spriteGroup.add(sprite);
 }
 
+/* ---------- FIT-TO-SCREEN SCALE ---------- */
+/* "WAREEZ" in the sampled text is roughly 30 world-units wide.
+   This function computes how much to shrink/scale it so it always
+   fits inside the viewport on phones and desktops. */
+const INTRO_TEXT_WIDTH = 30;
+function fitIntroScale(){
+  const vw = window.innerWidth;
+  const targetW = Math.min(vw * 0.82, 720);
+  const fovRad = (camera.fov * Math.PI) / 180;
+  const worldHeight = 2 * Math.tan(fovRad / 2) * camera.position.z;
+  const worldWidth  = worldHeight * camera.aspect;
+  const scale = (targetW / vw) * worldWidth / INTRO_TEXT_WIDTH;
+  return Math.min(scale, 1);
+}
+spriteGroup.scale.setScalar(fitIntroScale());
+
 /* ---------- ANIMATION: code flies in and assembles ---------- */
 const clock = new THREE.Clock();
 let elapsed = 0;
@@ -158,6 +174,9 @@ function animate(){
 
   spriteGroup.rotation.y = (1 - eased) * 0.4 * Math.sin(elapsed*0.001);
   spriteGroup.rotation.x = (1 - eased) * 0.15 * Math.cos(elapsed*0.001);
+
+  // apply fitted scale so the name never overflows
+  spriteGroup.scale.setScalar(fitIntroScale());
 
   renderer.render(scene, camera);
 
@@ -226,8 +245,6 @@ bgVideo.controls = false;
 
 let userGestured = false;
 
-/* Keeps the picture moving no matter what: if the browser refuses
-   sound, fall back to muted playback instead of freezing the frame. */
 function ensureBgPlaying(){
   if (!bgVideo.paused && !bgVideo.ended) return;
   const p = bgVideo.play();
@@ -252,14 +269,11 @@ function tryUnmute(){
   }
 }
 
-/* Called once the intro is finished and the site is visible */
 function startBgMedia(){
   ensureBgPlaying();
   if (userGestured) tryUnmute();
 }
 
-/* Browsers only allow sound after a real tap / click / key press.
-   (Scrolling does not count, which is why it never worked before.) */
 const GESTURE_EVENTS = ["pointerdown","pointerup","click","keydown","touchend"];
 function onGesture(){
   userGestured = true;
@@ -270,7 +284,6 @@ function removeGestureListeners(){
 }
 GESTURE_EVENTS.forEach(evt => window.addEventListener(evt, onGesture, { passive:true }));
 
-/* Never let the loop stop */
 bgVideo.addEventListener("pause",  ()=>{ if (!document.hidden) ensureBgPlaying(); });
 bgVideo.addEventListener("ended",  ()=>{ bgVideo.currentTime = 0; ensureBgPlaying(); });
 bgVideo.addEventListener("stalled",ensureBgPlaying);
@@ -282,4 +295,7 @@ window.addEventListener("resize", ()=>{
   camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  if (typeof fitIntroScale === "function"){
+    spriteGroup.scale.setScalar(fitIntroScale());
+  }
 });
