@@ -745,3 +745,136 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   *{animation:none !important;transition:none !important}
   .hero-content,.story-panel{opacity:1;transform:none}
 }
+
+/* ================= GAME: BUG HUNTER ================= */
+.game-section{padding:60px 8vw 110px;max-width:680px;margin:0 auto}
+.game{
+  position:relative;overflow:hidden;
+  background:rgba(3,7,12,.86);
+  border:1px solid var(--border);border-radius:20px;
+  padding:22px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.game-hud{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.hud{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:12px;
+  padding:10px 6px;text-align:center;
+}
+.hud-l{
+  display:block;font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+}
+.hud-v{
+  display:block;margin-top:6px;
+  font-family:var(--font-display);font-weight:800;font-size:1.6rem;line-height:1;color:#fff;
+}
+.game-arena{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  max-width:520px;margin:0 auto;
+}
+.cell{
+  position:relative;aspect-ratio:1/1;padding:0;overflow:hidden;
+  border-radius:18px;border:1px solid var(--border);
+  background:radial-gradient(circle at 50% 72%,rgba(var(--accent-rgb),.18),rgba(0,0,0,.6) 70%);
+  cursor:crosshair;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.cell .sprite{
+  position:absolute;inset:14%;display:grid;place-items:center;
+  transform:scale(0) translateY(30%);opacity:0;
+  transition:transform .14s ease-out,opacity .14s ease-out;
+  pointer-events:none;
+}
+.cell .sprite svg{width:100%;height:100%}
+.cell.up .sprite{transform:scale(1) translateY(0);opacity:1}
+.cell .key{
+  display:none;position:absolute;left:10px;bottom:7px;
+  font-family:var(--font-mono);font-size:.62rem;color:rgba(180,200,216,.5);
+  pointer-events:none;
+}
+@media (hover:hover) and (pointer:fine){ .cell .key{display:block} }
+.cell.good{border-color:#34d399;box-shadow:0 0 24px rgba(52,211,153,.6)}
+.cell.bad{border-color:#ff6b6b;box-shadow:0 0 24px rgba(255,107,107,.6)}
+
+.game-overlay{
+  position:absolute;inset:0;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;padding:30px;text-align:center;
+  background:rgba(3,7,12,.92);backdrop-filter:blur(6px);
+  transition:opacity .3s ease,visibility .3s ease;
+}
+.game-overlay.off{opacity:0;visibility:hidden;pointer-events:none}
+.game-overlay h3{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(1.4rem,4vw,2.2rem);line-height:1.15;letter-spacing:-.01em;color:#fff;
+}
+.game-overlay p{max-width:440px;color:var(--muted);font-size:.98rem;line-height:1.7}
+.game-legend{
+  display:flex;flex-wrap:wrap;gap:18px;justify-content:center;
+  font-family:var(--font-mono);font-size:.74rem;color:var(--muted);
+}
+.game-legend span{display:inline-flex;align-items:center;gap:8px}
+.game-legend i{display:inline-block;width:12px;height:12px;border-radius:50%}
+button.btn{border:0;cursor:pointer}
+
+@media (max-width: 600px){
+  .game-section{padding:40px 6vw 80px}
+  .game{padding:14px}
+  .game-hud{gap:6px}
+  .hud-v{font-size:1.3rem}
+  .game-arena{gap:8px}
+  .cell{border-radius:14px}
+  .game-overlay{padding:20px;gap:12px}
+}
+
+/* ================= GAME 2: BANNER PUZZLE ================= */
+.puzzle-section{padding:20px 8vw 110px;max-width:860px;margin:0 auto}
+.game-hud.three{grid-template-columns:repeat(3,1fr)}
+.puz-stage{
+  position:relative;width:100%;aspect-ratio:16/9;
+  background:#05080d;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  transition:box-shadow .5s ease,border-color .5s ease;
+}
+.puz-board{position:absolute;inset:0;outline:none}
+.puz-board:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.ptile{
+  position:absolute;left:0;top:0;padding:3px;border:0;background:none;cursor:pointer;
+  transition:transform .18s ease-out,padding .4s ease;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.puz-board.nofx .ptile{transition:none}
+.ptile svg{display:block;width:100%;height:100%;border-radius:8px;color:var(--accent)}
+.ptile .pnum{
+  position:absolute;left:10px;top:8px;min-width:22px;height:22px;padding:0 5px;
+  display:grid;place-items:center;border-radius:6px;
+  background:rgba(5,8,13,.78);color:#fff;
+  font-family:var(--font-mono);font-size:.7rem;font-weight:700;pointer-events:none;
+}
+.puz-stage.nonum .pnum{display:none}
+.ptile.ghost{pointer-events:none;opacity:0;transition:opacity .6s ease,transform .18s ease-out,padding .4s ease}
+.ptile.ghost.show{opacity:1}
+.puz-stage.solved{border-color:var(--accent);box-shadow:0 0 40px rgba(var(--accent-rgb),.4)}
+.puz-stage.solved .ptile{padding:0}
+.puz-stage.solved .ptile svg{border-radius:0}
+.puz-peek{
+  position:absolute;inset:0;width:100%;height:100%;color:var(--accent);
+  opacity:0;pointer-events:none;transition:opacity .15s ease;
+}
+.puz-stage.peek .puz-peek{opacity:1}
+.puz-msg{
+  margin:16px 0 14px;text-align:center;
+  font-family:var(--font-mono);font-size:.8rem;line-height:1.7;color:var(--muted);
+}
+.puz-controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip.is-on{background:var(--accent);color:#02040a}
+
+@media (max-width: 600px){
+  .puzzle-section{padding:10px 6vw 80px}
+  .ptile{padding:2px}
+  .ptile svg{border-radius:6px}
+  .ptile .pnum{left:5px;top:4px;min-width:18px;height:18px;font-size:.6rem}
+}
+.puz-stage.solved .pnum{display:none}
