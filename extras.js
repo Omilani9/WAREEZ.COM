@@ -158,6 +158,8 @@
           "  projects   things I've shipped",
           "  resume     download my CV",
           "  contact    get in touch",
+          "  play       try my Bug Hunter game",
+          "  puzzle     slide the banner puzzle",
           "  theme      change the accent colour",
           "  hire       the fast way to start a project",
           "  clear      wipe the screen"
@@ -216,6 +218,18 @@
         root.setProperty("--accent-rgb", t.ar);
         root.setProperty("--glow-rgb", t.gr);
         return say(["Accent colour → " + t.n + "  (run theme again to cycle)"], "ok");
+      },
+      async play() {
+        await say(["Loading Bug Hunter…"], "ok");
+        await wait(400);
+        const g = document.getElementById("game");
+        if (g) g.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      },
+      async puzzle() {
+        await say(["Loading the banner puzzle…"], "ok");
+        await wait(400);
+        const g = document.getElementById("puzzle");
+        if (g) g.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
       },
       clear() { body.innerHTML = ""; return Promise.resolve(); }
     };
