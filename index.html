@@ -292,9 +292,38 @@
   </section>
 
   <footer class="footer">
-    <span>© <span id="year"></span> Wareez — Frontend Developer</span>
-    <span>Built with HTML, CSS, JS &amp; Three.js</span>
+    <span>© <span id="year"></span> Wareez. All rights reserved.</span>
+    <span>Frontend Developer</span>
   </footer>
+
+  <!-- Comment box: icon appears after scrolling. Comments are emailed privately to the site owner. -->
+  <button type="button" class="chat-fab" id="chat-fab" aria-label="Leave a comment" aria-expanded="false" aria-controls="chat-panel">
+    <svg class="ico-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.7 8.7 0 0 1-3.6-.8L3 21l1.9-5.1A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.6"/></svg>
+    <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Leave a comment">
+    <div class="chat-head">
+      <div><strong>Leave a comment</strong><span>Only Wareez can see this.</span></div>
+      <button type="button" class="chat-close" id="chat-close" aria-label="Close">×</button>
+    </div>
+    <form class="chat-form" id="chat-form" novalidate>
+      <input type="text" id="cf-name" name="name" placeholder="Your name" maxlength="60" autocomplete="name" required>
+      <input type="email" id="cf-email" name="email" placeholder="Email (optional, if you want a reply)" maxlength="100" autocomplete="email">
+      <textarea id="cf-message" name="message" placeholder="Write your comment…" rows="4" maxlength="1000" required></textarea>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn btn-primary chat-send" id="chat-send">Send comment</button>
+      <p class="chat-status" id="chat-status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <!-- Cookie notice: appears after a little scrolling -->
+  <div class="cookie" id="cookie" role="region" aria-label="Cookie notice">
+    <p>This site uses cookies and local storage only to remember your best game scores on this device. No tracking, no ads.</p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn ghost" id="cookie-decline">Decline</button>
+      <button type="button" class="cookie-btn primary" id="cookie-accept">Accept</button>
+    </div>
+  </div>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -302,5 +331,6 @@
 <script src="extras.js"></script>
 <script src="game.js"></script>
 <script src="puzzle.js"></script>
+<script src="widgets.js"></script>
 </body>
 </html>
