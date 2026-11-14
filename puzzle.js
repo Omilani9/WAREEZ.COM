@@ -19,6 +19,7 @@
   let n = 3, tiles = [], ghost = null, pos = [], blank = 0;
   let moves = 0, started = false, solved = false, t0 = 0, timerId = 0;
 
+  const canSave = () => !window.wzConsent || window.wzConsent.allowed();
   const bestFor = sz => { try { return parseInt(localStorage.getItem(KEY + sz), 10) || 0; } catch (e) { return 0; } };
   const fmt = s => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
   const showBest = () => { const b = bestFor(n); bestEl.textContent = b ? b : "–"; };
@@ -117,7 +118,7 @@
     const secs = Math.round((Date.now() - t0) / 1000);
     const prev = bestFor(n);
     const isBest = !prev || moves < prev;
-    if (isBest) { try { localStorage.setItem(KEY + n, String(moves)); } catch (e) {} }
+    if (isBest && canSave()) { try { localStorage.setItem(KEY + n, String(moves)); } catch (e) {} }
     showBest();
     msg.textContent = "Solved in " + moves + " moves and " + fmt(secs) +
       (isBest ? " — a new best!" : ".") + " Hit Shuffle to go again.";
