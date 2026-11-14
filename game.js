@@ -30,6 +30,8 @@
   let endAt = 0, tickId = 0, spawnId = 0;
   const slots = new Array(9).fill(null);
 
+  const canSave = () => !window.wzConsent || window.wzConsent.allowed();
+
   try { best = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
 
   function setHUD() {
@@ -117,7 +119,7 @@
     const isBest = score > best;
     if (isBest) {
       best = score;
-      try { localStorage.setItem(KEY, String(best)); } catch (e) {}
+      if (canSave()) { try { localStorage.setItem(KEY, String(best)); } catch (e) {} }
     }
     setHUD();
     const rank = score >= 350 ? "10x Developer"
