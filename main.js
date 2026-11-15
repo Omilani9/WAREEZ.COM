@@ -246,6 +246,7 @@ bgVideo.controls = false;
 let userGestured = false;
 
 function ensureBgPlaying(){
+  if (document.hidden) return;                 // never play while the visitor is away
   if (!bgVideo.paused && !bgVideo.ended) return;
   const p = bgVideo.play();
   if (p && p.catch){
@@ -284,11 +285,17 @@ function removeGestureListeners(){
 }
 GESTURE_EVENTS.forEach(evt => window.addEventListener(evt, onGesture, { passive:true }));
 
-bgVideo.addEventListener("pause",  ()=>{ if (!document.hidden) ensureBgPlaying(); });
+bgVideo.addEventListener("pause",  ()=>{ if (!document.hidden && !away) ensureBgPlaying(); });
 bgVideo.addEventListener("ended",  ()=>{ bgVideo.currentTime = 0; ensureBgPlaying(); });
 bgVideo.addEventListener("stalled",ensureBgPlaying);
-document.addEventListener("visibilitychange", ()=>{ if (!document.hidden) ensureBgPlaying(); });
-window.addEventListener("pageshow", ensureBgPlaying);
+/* Leaving the page (other tab, minimized, phone locked, app switched, page closing):
+   pause the video so its sound stops. Coming back: resume. */
+let away = false;
+function pauseWhileAway(){ away = true; if (!bgVideo.paused) bgVideo.pause(); }
+function comeBack(){ away = false; ensureBgPlaying(); }
+document.addEventListener("visibilitychange", ()=>{ document.hidden ? pauseWhileAway() : comeBack(); });
+window.addEventListener("pagehide", pauseWhileAway);
+window.addEventListener("pageshow", comeBack);
 
 /* ---------- RESIZE ---------- */
 window.addEventListener("resize", ()=>{
