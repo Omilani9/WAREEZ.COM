@@ -63,7 +63,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .loader{
   position:absolute;z-index:5;
   left:50%;
-  top:calc(50% + 12vh + 44px);
+  top:calc(50% + min(6.9vw, 84px) + 40px);
   transform:translateX(-50%);
   width:min(420px,80vw);
   text-align:center;
