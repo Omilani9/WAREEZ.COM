@@ -1,6 +1,6 @@
 /* =====================================================
    WAREEZ PORTFOLIO — puzzle.js
-   BANNER PUZZLE: slide the tiles to rebuild the WAREEZ.com
+   BANNER PUZZLE: slide the tiles to rebuild the
    banner. 3×3 or 4×4. Moves + time, best score saved.
    Tap a tile next to the gap, or focus the board and use
    the arrow keys.
@@ -14,7 +14,7 @@
   const sizeBtns   = Array.from(document.querySelectorAll("[data-size]"));
   const shuffleBtn = $("#p-shuffle"), peekBtn = $("#p-peekbtn"), numsBtn = $("#p-nums");
   const KEY   = "wareez_slide_best_";
-  const INTRO = "Slide the tiles to rebuild the WAREEZ.com banner.";
+  const INTRO = "Slide the tiles to rebuild the banner.";
 
   let n = 3, tiles = [], ghost = null, pos = [], blank = 0;
   let moves = 0, started = false, solved = false, t0 = 0, timerId = 0;
