@@ -976,10 +976,10 @@ button.btn{border:0;cursor:pointer}
    Keeps the footer text above the chat icon, and above the cookie notice
    while it is open (the space shrinks again once the visitor taps Accept/Decline). */
 .footer{padding-bottom:104px;transition:padding-bottom .3s ease}
-body.cookie-open .footer{padding-bottom:170px}
+body.cookie-open .footer{padding-bottom:190px}
 @media (max-width: 600px){
   .footer{padding-bottom:92px}
-  body.cookie-open .footer{padding-bottom:215px}
+  body.cookie-open .footer{padding-bottom:235px}
 }
 
 /* ================= LIVE PREVIEWS IN PROJECT CARDS ================= */
