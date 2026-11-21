@@ -10,8 +10,8 @@
      1. Go to https://web3forms.com and enter the email that should receive comments.
      2. They email you an "access key". Paste it between the quotes below.
         (The key is safe to leave in public website code.) */
-  const WEB3FORMS_KEY = "930f7e39-fd78-44f7-902f-3ab7c6d5df7b";
-  const EMAIL_SUBJECT = "New comment on WAREEZ.com";
+  const WEB3FORMS_KEY = "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE";
+  const EMAIL_SUBJECT = "New comment on WareezBuilds.com";
 
   const CHAT_SHOW_AT   = 0.6;   // chat icon appears after scrolling this many screen-heights
   const COOKIE_SHOW_AT = 0.3;   // cookie notice appears after scrolling this many screen-heights
@@ -108,7 +108,7 @@
           body: JSON.stringify({
             access_key: WEB3FORMS_KEY,
             subject: EMAIL_SUBJECT,
-            from_name: "WAREEZ.com",
+            from_name: "WareezBuilds.com",
             name: name,
             email: email || undefined,
             replyto: email || undefined,
